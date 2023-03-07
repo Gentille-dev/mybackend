@@ -18,16 +18,26 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+
 // route - home route
-app.get("/test", (req, res) => {
+app.get("/", (req, res) => {
   res.status(200).send(`
   <h1 style="text-align: center; color: blue; margin-top: 20vh">Welcome to our api home page</h1>
   `);
 });
 
+
+
+
+// app.get("/test", (req, res) => {
+//   res.status(200).send(`
+//   <h1 style="text-align: center; color: blue; margin-top: 20vh">Welcome to our api home page</h1>
+//   `);
+// });
+
 app.use("/api/v1", allRoutes);
 
-// define some variables
+// define some variables......
 const port = process.env.PORT;
 const host = process.env.HOST;
 
