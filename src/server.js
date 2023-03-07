@@ -14,7 +14,7 @@ dotenv.config();
 // create server instance
 const app = express();
 
-// use of cors and body parse
+// use of cors and body parse.....
 app.use(cors());
 app.use(bodyParser.json());
 
