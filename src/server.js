@@ -18,13 +18,6 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-
-// app.use(express.json());
-//app.get|('/', (req,res) => {
-  //  res.response("hey everybodi");
-//});
-
-
 // route - home route
 app.get("/test", (req, res) => {
   res.status(200).send(`
