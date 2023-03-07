@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
-import allRoutes from "../backend/src/routes/allRoutes.js"
+import allRoutes from "../src/routes/allRoutes.js"
 
 
 mongoose.set('strictQuery', false);
@@ -27,7 +27,6 @@ app.use(bodyParser.json());
 
 // route - home route
 app.get("/test", (req, res) => {
-  
   res.status(200).send(`
   <h1 style="text-align: center; color: blue; margin-top: 20vh">Welcome to our api home page</h1>
   `);
