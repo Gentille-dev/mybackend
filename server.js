@@ -3,7 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
-import allRoutes from "./routes/allRoutes.js"
+import allRoutes from "../backend/src/routes/allRoutes.js"
+
 
 mongoose.set('strictQuery', false);
 
@@ -16,6 +17,13 @@ const app = express();
 // use of cors and body parse
 app.use(cors());
 app.use(bodyParser.json());
+
+
+// app.use(express.json());
+//app.get|('/', (req,res) => {
+  //  res.response("hey everybodi");
+//});
+
 
 // route - home route
 app.get("/test", (req, res) => {
@@ -34,7 +42,8 @@ const host = process.env.HOST;
 // database connection instance
 const con = () => mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  
 });
 
 // instance to listen to our server
@@ -45,3 +54,7 @@ Promise.all([con(), startServer()])
     console.log(`MongoDB connected and server listening at http://${host}:${port}`);
   })
   .catch((err) => console.log(err))
+
+
+
+  

@@ -1,19 +1,8 @@
-import express from "express";
-import blogController from "../controllers/blogController.js";
+import express from 'express';
 import multer from 'multer';
 import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
-
-
-const router = express.Router()
-
-router.get("/", blogController.getBlogs)
-router.get("/:id", blogController.getBlog)
-router.post("/", blogController.createBlogs)
-router.put("/:id", blogController.updateBlogs)
-router.delete("/:id", blogController.deleteBlogs)
-
-
+const app = express();
 
 cloudinary.config({
     cloud_name: "dzy1drqcm",
@@ -29,25 +18,19 @@ const storage = new CloudinaryStorage({
   }
 });
 
-
 const upload = multer({ storage }).single('image');
 
-// cloudinary link
-router.post('/upload',(req, res) =>{
+app.get("/", (req,res) => (
+  res.send("home[")
+))
+app.post('/upload',(req, res) =>{
   upload(req, res, (err) =>{
     if(err){
       console.log(err)
-    } else 
+    }
     res.send({ image: req.file.path })
   })
-}) 
+})
+console.log("ghshcg");
+app.listen(3000,()=>console.log("server connected"));
 
-export default router
-
-
-
-
-
-
-
- 

@@ -4,6 +4,7 @@ import signupRoute from "./signupRoute.js"
 import loginRoute from "./loginRoute.js"
 import messageRoute from "./messageRoute.js"
 
+
 const router = express.Router()
 //all routes
 
@@ -13,4 +14,6 @@ router.use("/login", loginRoute)
 router.use("/message", messageRoute)
 
 
+
 export default router
+

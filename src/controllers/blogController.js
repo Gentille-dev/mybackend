@@ -4,9 +4,7 @@ import Blog from "../model/blog.js";
 // import errorFunc from "../utils/errorFunc.js";
 
 class blogController {
-    //functions
 
-    //CRUD OPERATION
 
 
     //get all blogs

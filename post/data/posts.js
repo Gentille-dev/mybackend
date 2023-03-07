@@ -1,11 +1,11 @@
 import mongoose from "mongoose";
 
-const blogSchema = new mongoose.Schema({
-  title: {
-    type: String,
+const postSchema = new mongoose.Schema({
+  id: {
+    type: Number,
     required: true
   },
-  description: {
+  name: {
     type: String,
     required: true
   },
@@ -13,12 +13,11 @@ const blogSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-                  
   createdAt: {
     type: Date,
     default: Date.now
   }
 });
-const Blog = mongoose.model("Blog", blogSchema)
+const dataPost = mongoose.model("dataPost", postSchema)
 
-export default Blog
+export default dataPost
