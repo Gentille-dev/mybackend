@@ -1,11 +1,11 @@
 
 const express =  require("express")
 const request =  require("supertest")
-const postRoute =  require("../post/routes/posts.route")
+const postRoute =  require("./post/routes/posts.route")
 
 
 const app = express();
-const dataPost = require("../post/data/posts.json")
+const dataPost = require("./post/data/posts.json")
 
 app.use(express.json());
 app.use("api/posts", postRoute);
