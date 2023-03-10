@@ -1,0 +1,328 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0",
+        "title": "Backend API",
+        "description": "This is backend APIs for my personal website(Portfolio)",
+        "contact": {
+            "name": "Gentille Ernestine M",
+            "email": "ernegentille@gmail.com"
+        }
+    },
+    "host": "localhost:2023/api/v1",
+    "schemes": [
+        "http",
+        "https"
+    ],
+    "paths": {
+        "/signup": {
+            "post": {
+                "tags": [
+                    "Authentication"
+                ],
+                "summary": "create a new user",
+                "parameters": [
+                    {
+                        "name": "user credentials",
+                        "in": "body",
+                        "description": "Type your fullname, email, and password",
+                        "required": true,
+                        "schema": {
+                            "example": {
+                                "fullname": "Gentille Ernestine",
+                                "email": "ernegenntille@gmail.com",
+                                "password": "gentille123"
+                            }
+                        }
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "User created with Success!"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "403": {
+                        "description": "Your email already exists"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "tags": [
+                    "Autho-rization"
+                ],
+                "summary": "login a User",
+                "parameters": [
+                    {
+                        "name": "user credentials",
+                        "in": "body",
+                        "description": "email and password of a user",
+                        "required": "true",
+                        "schema": {
+                            "example": {
+                                "email": "gentille@gmail.com",
+                                "password": "gentille"
+                            }
+                        }
+                    }
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "User logged in ! with Success"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "401": {
+                        "description": "Invalid email/Passowrd"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/blogs": {
+            "post": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "tags": [
+                    "Blogs"
+                ],
+                "summary": "create a new blog",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "formData",
+                        "name": " title",
+                        "description": "add a blog title",
+                        "type": " string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": " author",
+                        "description": "add a blog Author",
+                        "type": " string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": " description",
+                        "description": "add blog content",
+                        "type": " string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "blog created with success!"
+                    },
+                    "401": {
+                        "description": "Validation fails"
+                    },
+                    "400": {
+                        "description": "Bad Request"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    },
+                    "500": {
+                        "description": "server error"
+                    }
+                }
+            },
+            "get": {
+                "summary": "get all blogs",
+                "description": "Retrieving all created blogs",
+                "tags": [
+                    "Blogs"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    },
+                    "500": {
+                        "description": "Server error"
+                    }
+                }
+            }
+        },
+        "/blog/{id}": {
+            "get": {
+                "tags": [
+                    "Blogs"
+                ],
+                "summary": "Getting one blog by unique ID",
+                "description": "Displaying single blog with unique ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Diisplaying blog content of matching ID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": " blog retrieved successfuly"
+                    },
+                    "404": {
+                        "description": "blog not found! Please Insert correct ID"
+                    }
+                }
+            },
+            "patch": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "tags": [
+                    "Blogs"
+                ],
+                "summary": "Update the blog",
+                "description": "Update the blog with a specified ID",
+                "consumes": [
+                    "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Update the blog with a specified matching ID",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "title",
+                        "in": "formData",
+                        "description": "Update blog title",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": " description",
+                        "in": "formData",
+                        "description": "Update blog content",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": " author",
+                        "in": "formData",
+                        "description": "Update blog author",
+                        "required": false,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": " blog successfuly updated"
+                    },
+                    "401": {
+                        "description": "blog not found! Please Insert correct ID"
+                    },
+                    "404": {
+                        "description": "Unauthorised"
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "Bearer": []
+                    }
+                ],
+                "tags": [
+                    "Blogs"
+                ],
+                "summary": "Delete the blog",
+                "description": "Delete one blog with a specified ID",
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "name": "blogID",
+                        "in": "path",
+                        "description": "Delete one blog with a specified ID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "blog deleted successfully"
+                    },
+                    "404": {
+                        "description": "blog not found"
+                    }
+                }
+            }
+        },
+        "/message": {
+            "post": {
+                "tags": [
+                    "Queries"
+                ],
+                "summary": "Create a new query",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "Query",
+                        "description": "Query Body",
+                        "schema": {
+                            "example": {
+                                "username": "kevine",
+                                "email": "kevine@gmail.com",
+                                "message": "Well Done"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Message Delivered!"
+                    },
+                    "401": {
+                        "description": "NOT Sent"
+                    }
+                }
+            }
+        }
+    }
+}
