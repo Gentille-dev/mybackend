@@ -5,8 +5,6 @@ import Blog from "../model/blog.js";
 
 class blogController {
 
-
-
     //get all blogs
 
     static async getBlogs(req, res) {

@@ -15,6 +15,12 @@ router.delete("/:id", blogController.deleteBlogs)
 
 
 
+// SWAGGER DOCUMENTATION PART
+
+
+
+
+// WORKING ON UDDING BLOG WITH CLOUDINARY IMAGE
 cloudinary.config({
     cloud_name: "dzy1drqcm",
     api_key: "555662163364287",
@@ -28,7 +34,6 @@ const storage = new CloudinaryStorage({
     allowed_formats: ['jpg', 'png']
   }
 });
-
 
 const upload = multer({ storage }).single('image');
 
