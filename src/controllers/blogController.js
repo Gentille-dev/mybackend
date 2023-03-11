@@ -50,10 +50,10 @@ class blogController {
     //create blogs
     static async createBlogs(req, res) {
         try {
-            const { title, description, author } = req.body
+            const { title, description, author, imageUrl} = req.body
             // const newBlog = { id, title, author, description}
 
-            const newBlog = await Blog.create({ title, description, author})
+            const newBlog = await Blog.create({ title, description, author, imageUrl})
 
 
             res.status(201).json({
@@ -77,9 +77,9 @@ class blogController {
             const { id } = req.params;        //USING ES6
 
             //content to be updated
-            const { title, description } = req.body
+            const { title, description,imageUrl } = req.body
             const _id = id
-            const blogUpdated = await Blog.findByIdAndUpdate(_id, { title, description }, { new: true });
+            const blogUpdated = await Blog.findByIdAndUpdate(_id, { title, description, imageUrl}, { new: true });
 
             if (!blogUpdated) {
                 return res.status(404).json({

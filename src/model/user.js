@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 import bycript from "bcrypt"
 
 const userSchema = mongoose.Schema({
-    fullname: {
+    fullname: {  
         type: String,
         required: true
     },
@@ -16,6 +16,11 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true,
         minlength: 6
+    },
+    isAdmin: {
+        type: Boolean,
+        required: true
+
     },
     createdAt: {
         type: Date,

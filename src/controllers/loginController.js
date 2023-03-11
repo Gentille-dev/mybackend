@@ -10,28 +10,36 @@ const loginController = async (req, res) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({
-        message: "User not Found, SignUp!"
+      return res.status(401).json({
+        message: "Invalid Credentials"
       });
     } else {
       // check if password is correct
-      const passwordMatch = await bcrypt.compare(password, user.password);
+      const compareHashedPassword = await bcrypt.compare(password, user.password);
 
       // conditions
-      if (!passwordMatch) {
-        return res.status(400).json({ message: 'User not Found, SignUp!' });
+      if (!compareHashedPassword) {
+        return res.status(400).json(
+          { message: 'Invalid Credentials' });
       } else {
         // create and sign JWT token
-        const token = jwt.sign({ userId: user._id }, secret, { expiresIn: '1d' });
+        const token = jwt.sign({isAdmin: user.isAdmin}, process.env.SECRET, {expiresIn: '1d'})
+       
 
-        res.cookie('token', token, {
-          httpOnly: true,
-          maxAge: 24 * 60 * 60 * 1000 // 1 day
-        });
-        res.status(200).json({
-          message: 'Login successful',
-          token: token
-        });
+        return res.status(200).json ({
+          data: {
+            email: user.email,
+            isAdmin: user.isAdmin,
+            createdAt: user.createdAt
+          },
+          token: token,
+
+         
+        })
+
+        // res.cookie('token', token, {
+        //   httpOnly: true,
+        //   maxAge: 24 * 60 * 60 * 1000 // 1 day
       }
     }
   } catch (error) {

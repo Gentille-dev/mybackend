@@ -3,19 +3,17 @@ import blogController from "../controllers/blogController.js";
 import multer from 'multer';
 import { v2 as cloudinary } from 'cloudinary';
 import { CloudinaryStorage } from 'multer-storage-cloudinary'
+import verifyIsAdmin from "../middleware/verifyIsAdmin.js";
 
 
 const router = express.Router()
 
-router.get("/", blogController.getBlogs)
+router.post("/", verifyIsAdmin, blogController.createBlogs)
+router.get("/",  blogController.getBlogs)
 router.get("/:id", blogController.getBlog)
-router.post("/", blogController.createBlogs)
-router.put("/:id", blogController.updateBlogs)
-router.delete("/:id", blogController.deleteBlogs)
+router.put("/:id", verifyIsAdmin, blogController.updateBlogs)
+router.delete("/:id",verifyIsAdmin, blogController.deleteBlogs)
 
-
-
-// SWAGGER DOCUMENTATION PART
 
 
 

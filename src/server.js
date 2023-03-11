@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import bodyParser from "body-parser";
+import morgan from "morgan";
 import mongoose from "mongoose";
 import allRoutes from "./routes/allRoutes.js"
 import router from "./routes/blogRoute.js";
@@ -16,7 +17,7 @@ dotenv.config();
 const swaggerDocument = require("../swagger.json");
 
 
-// create server instance
+// create app server instance
 const app = express();
 
 // use of cors and body parse.....
@@ -24,7 +25,10 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-
+// morgan for logs
+if(process.env.NODE_ENV === "development") {
+  app.use(morgan())
+}
 
 //route
 app.get("/", (req, res) => {
