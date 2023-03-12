@@ -5,7 +5,6 @@ import bodyParser from "body-parser";
 import morgan from "morgan";
 import mongoose from "mongoose";
 import allRoutes from "./routes/allRoutes.js"
-import router from "./routes/blogRoute.js";
 import swaggerDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 
