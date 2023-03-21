@@ -9,7 +9,7 @@
             "email": "ernegentille@gmail.com"
         }
     },
-    "host": "localhost:4000/api/v1",
+    "host": "localhost:5000/api/v1",
     "schemes": [
         "http",
         "https"

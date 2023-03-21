@@ -18,8 +18,7 @@ const userSchema = mongoose.Schema({
         minlength: 6
     },
     isAdmin: {
-        type: Boolean,
-        required: true
+        type: Boolean
 
     },
     createdAt: {
