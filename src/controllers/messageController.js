@@ -53,10 +53,10 @@ class messageController {
     //create blogs
     static async createMessages(req, res) {
         try {
-            const { username, email, message } = req.body
+            const { fullname, email, message } = req.body
             // const newBlog = { id, title, author, description}
 
-            const newMessage = await Message.create({ username, email, message})
+            const newMessage = await Message.create({ fullname, email, message})
 
 
             res.status(201).json({
@@ -80,9 +80,9 @@ class messageController {
             const { id } = req.params;        //USING ES6
 
             //content to be updated
-            const { username, email, message } = req.body
+            const { fullname, email, message } = req.body
             const _id = id
-            const messageUpdated = await Message.findByIdAndUpdate(_id, { username, email, message }, { new: true });
+            const messageUpdated = await Message.findByIdAndUpdate(_id, { fullname, email, message }, { new: true });
 
             if (!messageUpdated) {
                 return res.status(404).json({

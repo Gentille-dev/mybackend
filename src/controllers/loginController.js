@@ -2,7 +2,7 @@ import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../model/user.js";
 
-const secret = "hhhhhh";
+const secret = "impecable";
 
 const loginController = async (req, res) => {
   // email and password from the body
@@ -23,7 +23,9 @@ const loginController = async (req, res) => {
           { message: 'Invalid Credentials' });
       } else {
         // create and sign JWT token
-        const token = jwt.sign({isAdmin: user.isAdmin}, process.env.SECRET, {expiresIn: '1d'})
+        //const token = jwt.sign({isAdmin: user.isAdmin}, secret)
+        const token = jwt.sign({id: user._id}, secret)
+        //, {expiresIn: '1d'}
        
 
         return res.status(200).json ({
@@ -33,6 +35,7 @@ const loginController = async (req, res) => {
             createdAt: user.createdAt
           },
           token: token,
+          message: "logged in successfully"
 
          
         })

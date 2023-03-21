@@ -77,9 +77,9 @@ class blogController {
             const { id } = req.params;        //USING ES6
 
             //content to be updated
-            const { title, description,imageUrl } = req.body
+            const { title, description, author,imageUrl } = req.body
             const _id = id
-            const blogUpdated = await Blog.findByIdAndUpdate(_id, { title, description, imageUrl}, { new: true });
+            const blogUpdated = await Blog.findByIdAndUpdate(_id, { title, description, author, imageUrl}, { new: true });
 
             if (!blogUpdated) {
                 return res.status(404).json({

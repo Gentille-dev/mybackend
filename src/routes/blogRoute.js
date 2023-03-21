@@ -8,11 +8,11 @@ import verifyIsAdmin from "../middleware/verifyIsAdmin.js";
 
 const router = express.Router()
 
-router.post("/", verifyIsAdmin, blogController.createBlogs)
+router.post("/", blogController.createBlogs)
 router.get("/",  blogController.getBlogs)
 router.get("/:id", blogController.getBlog)
-router.put("/:id", verifyIsAdmin, blogController.updateBlogs)
-router.delete("/:id",verifyIsAdmin, blogController.deleteBlogs)
+router.put("/:id", blogController.updateBlogs)
+router.delete("/:id", blogController.deleteBlogs)
 
 
 
