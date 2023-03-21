@@ -26,6 +26,8 @@ const loginController = async (req, res) => {
         const token = jwt.sign({isAdmin:user.isAdmin},process.env.SECRET
         ,{expiresIn: '1d'})
        
+
+        // testing cookies
         return res.status(200).json ({
           data: {
             email:user.email,
